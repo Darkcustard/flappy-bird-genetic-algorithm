@@ -9,6 +9,9 @@ pipe_image.set_colorkey((255,255,255))
 bird_image = image.load('src/assets/bird.png')
 bird_image.set_colorkey((255,255,255))
 
+background_image = image.load('src/assets/background.jpg')
+background_image = transform.scale(background_image, (1400, 650))
+
 # Game Rules
 resolution = (1400,650)
 
@@ -48,10 +51,21 @@ class Bird:
         self.image = bird_image.copy()
     
     def draw(self,window):
-
         angle = self.yvel/self.maxyvel*-self.rotfactor
         rotated_copy = transform.rotate(self.image, angle)
         window.blit(rotated_copy,  (self.x, self.y))
+
+    def check_collision_pipe(self, pipe : Pipe ):
+        
+        x,y = (pipe.x-self.x, pipe.y-self.y)
+
+        if x < 50 and x > -150:
+            if y > -400 or y < -550:
+                return True
+            
+        return False
+
+
 
 
     def jump(self):

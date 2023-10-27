@@ -1,6 +1,6 @@
 import pygame
 from src import environment
-
+import sys
 
 def main():
 
@@ -19,11 +19,14 @@ def main():
 
         
         window.fill((255,255,255))
+        window.blit(environment.background_image, (0,0)) 
         dt = clock.tick()/1000
 
         for pipe in pipes:
             pipe.draw(window)
             pipe.update(dt)
+            if bird.check_collision_pipe(pipe):
+                sys.exit()
 
         for pipe in pipes:
             if pipe.x < -100:

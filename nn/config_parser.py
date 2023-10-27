@@ -19,6 +19,5 @@ def parse_config( config_file_path ) :
 					default[splitline[0]] = splitline[1::]
 	return default
 
-print(parse_config("config_example.txt"))
 
 
