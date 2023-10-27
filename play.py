@@ -12,13 +12,18 @@ def main():
     pipes.append(environment.Pipe(2300,pipes))
     pipes.append(environment.Pipe(2700,pipes))
 
+    birdy = 100
+    birdyvel = 0
+
     running = True
 
     while running:
 
 
         window.fill((255,255,255))
-        dt = clock.tick(120)/1000
+        dt = clock.tick()/1000
+        birdyvel += dt*1500
+        birdy += birdyvel*dt
 
         for pipe in pipes:
             pipe.draw(window)
@@ -33,7 +38,11 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
+        keyboard = pygame.key.get_pressed()
+        if keyboard[pygame.K_SPACE]:
+            birdyvel = -400
 
+        pygame.draw.rect(window, (255,0,0), (100, birdy, 50, 50))
 
         pygame.display.update()
 
