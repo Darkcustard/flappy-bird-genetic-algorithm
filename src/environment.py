@@ -1,9 +1,13 @@
 from pygame import image
 from random import randint
+from pygame import transform
 
 # Create image cache
 pipe_image = image.load('src/assets/pipe.png')
 pipe_image.set_colorkey((255,255,255))
+
+bird_image = image.load('src/assets/bird.png')
+bird_image.set_colorkey((255,255,255))
 
 # Game Rules
 resolution = (1400,650)
@@ -32,7 +36,33 @@ class Pipe:
 
 class Bird:
 
-    pass
+    g = 1000
+    maxyvel = 500
+    jumpforce = 400
+    x = 100
+    y = 300
+    yvel = 0
+
+    def __init__(self):
+        self.image = bird_image.copy()
+    
+    def draw(self,window):
+        window.blit(self.image,  (self.x, self.y))
+
+    def jump(self):
+        self.yvel = -self.jumpforce
+
+    def update(self, dt):
+
+        self.yvel += self.g*dt
+
+        # Enforce Max velocity
+        if abs(self.yvel) > self.maxyvel:
+            self.yvel /= abs(self.yvel)
+            self.yvel *= self.maxyvel
+        
+        self.y += self.yvel*dt
+
 
 
 
