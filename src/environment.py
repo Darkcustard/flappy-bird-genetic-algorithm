@@ -42,12 +42,17 @@ class Bird:
     x = 100
     y = 300
     yvel = 0
+    rotfactor = 20
 
     def __init__(self):
         self.image = bird_image.copy()
     
     def draw(self,window):
-        window.blit(self.image,  (self.x, self.y))
+
+        angle = self.yvel/self.maxyvel*-self.rotfactor
+        rotated_copy = transform.rotate(self.image, angle)
+        window.blit(rotated_copy,  (self.x, self.y))
+
 
     def jump(self):
         self.yvel = -self.jumpforce
