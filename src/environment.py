@@ -59,7 +59,7 @@ class Bird:
         
         x,y = (pipe.x-self.x, pipe.y-self.y)
 
-        if x < 50 and x > -150:
+        if x < 50 and x > -100:
             if y > -400 or y < -550:
                 return True
             
