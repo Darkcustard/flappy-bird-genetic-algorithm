@@ -3,6 +3,7 @@ from nn.config_parser import parse_config
 from random import shuffle, random
 from copy import deepcopy
 from math import ceil
+from time import time
 
 class Population:
 
@@ -34,14 +35,27 @@ class Population:
 
         for x in range(generations):
 
+            print(f"Beginning generation : {x}")
+            print("---------------------------------")
+            starttime = time()
+
             # Reset network fitnesses
             [net.reset_fitness() for net in self.networks]
+            
+            # Eval networks
+            evaluator_function( self.networks )
 
             # Shuffle networks
             shuffle(self.networks)
 
             # Rank networks
             self.networks.sort( reverse = True, key = lambda x : x.fitness )
+            fitnesses = [net.fitness for net in self.networks]
+            bestfitness = fitnesses[0]
+            avgfitness = sum(fitnesses)/len(fitnesses)
+            print(f"Best fitness : {bestfitness}")
+            print(f"Average fitness : {avgfitness}")
+            
             
             # kill n networks
             survivor_count = round(self.config['survival_threshhold']*self.config['population_size'])
@@ -96,5 +110,8 @@ class Population:
                 i += 1
                 if i > survivor_count-1:
                     i = 0
+
+            endtime = time()
+            print(f"Generation finished in : {round((endtime-starttime)*10)/10} seconds. \n")
 
         return self.networks[0]
