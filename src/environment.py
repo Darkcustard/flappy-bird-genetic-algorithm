@@ -9,8 +9,6 @@ pipe_image.set_colorkey((255,255,255))
 bird_image = image.load('src/assets/bird.png')
 bird_image.set_colorkey((255,255,255))
 
-background_image = image.load('src/assets/background.jpg')
-background_image = transform.scale(background_image, (1400, 650))
 
 # Game Rules
 resolution = (1400,650)

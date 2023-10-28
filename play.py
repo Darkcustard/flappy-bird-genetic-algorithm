@@ -14,12 +14,11 @@ def main():
     bird = environment.Bird()
 
     running = True
-
+ 
     while running:
 
         
         window.fill((255,255,255))
-        window.blit(environment.background_image, (0,0)) 
         dt = clock.tick()/1000
 
         for pipe in pipes:
