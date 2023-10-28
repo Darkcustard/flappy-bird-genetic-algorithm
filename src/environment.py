@@ -9,6 +9,8 @@ pipe_image.set_colorkey((255,255,255))
 bird_image = image.load('src/assets/bird.png')
 bird_image.set_colorkey((255,255,255))
 
+background_image = image.load('src/assets/background.png')
+
 
 # Game Rules
 resolution = (1400,650)
@@ -43,7 +45,7 @@ class Bird:
     x = 100
     y = 300
     yvel = 0
-    rotfactor = 20
+    rotfactor = 45
 
     def __init__(self):
         self.image = bird_image.copy()

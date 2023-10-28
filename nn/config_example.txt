@@ -1,6 +1,4 @@
 # COMMENT DO NOT READ
-weight_mutate_rate 0.5
-weight_replace_rate 0.1
 fitness_criterion 100
 population_size 1000
 

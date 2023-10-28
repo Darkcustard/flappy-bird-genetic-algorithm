@@ -1,6 +1,7 @@
 import pygame
 from src import environment
 import sys
+import random
 
 def main():
 
@@ -11,7 +12,13 @@ def main():
     pipes.append(environment.Pipe(1900,pipes))
     pipes.append(environment.Pipe(2300,pipes))
     pipes.append(environment.Pipe(2700,pipes))
-    bird = environment.Bird()
+
+
+    birds = []
+    for x in range(1):
+        bird = environment.Bird()
+        bird.y = random.randint(0,600)
+        birds.append(bird)
 
     running = True
  
@@ -20,12 +27,15 @@ def main():
         
         window.fill((255,255,255))
         dt = clock.tick()/1000
+        window.blit(environment.background_image, (0,0))
 
         for pipe in pipes:
             pipe.draw(window)
             pipe.update(dt)
-            if bird.check_collision_pipe(pipe):
-                sys.exit()
+
+            for bird in birds:
+                if bird.check_collision_pipe(pipe):
+                    birds.remove(bird)
 
         for pipe in pipes:
             if pipe.x < -100:
@@ -38,10 +48,12 @@ def main():
 
         keyboard = pygame.key.get_pressed()
         if keyboard[pygame.K_SPACE]:
-            bird.jump()
+            for bird in birds:
+                bird.jump()
         
-        bird.update(dt)
-        bird.draw(window)
+        for bird in birds:
+            bird.update(dt)
+            bird.draw(window)
 
 
         pygame.display.update()

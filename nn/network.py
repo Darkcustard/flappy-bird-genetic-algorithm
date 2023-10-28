@@ -25,6 +25,7 @@ class FeedForwardNetwork:
     def __init__( self, layer_sizes : list, config_path ):
 
         self.config = parse_config(config_path)
+        print(self.config)
         
 
         # Create layers based off of config
@@ -32,10 +33,11 @@ class FeedForwardNetwork:
         for layer_size in layer_sizes:
 
             activation = stringToFunction[self.config['activation_default']]
+
             min_bias = self.config['bias_min']
             max_bias = self.config['bias_max']
 
-            self.layers.append( Layer(layer_sizes, activation, min_bias, max_bias) )
+            self.layers.append( Layer(layer_size, activation, min_bias, max_bias) )
 
 
         # Create weight Matrices
@@ -45,4 +47,4 @@ class FeedForwardNetwork:
                 pass
 
 
-
+FeedForwardNetwork( [2,3,1], 'nn/config_example.txt' )
