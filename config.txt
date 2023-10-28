@@ -1,25 +1,28 @@
-# COMMENT DO NOT READ
+# Population Statistics
+
 fitness_criterion 100
 population_size 1000
-
-# ANOTHER COMMENT DONT READ
 survival_threshhold 0.5
+
+# Weights
 weight_mutate_rate 0.3
 weight_mutate_power 0.5
 weight_replace_rate 0.1
 weight_max 30
 weight_min -30
 
-# A THIRD COMMENT WOW!
+# Biases
 bias_mutate_rate 0.3
 bias_mutate_power 0.5
 bias_replace_rate 0.1
 bias_max 30
 bias_min -30
 
+# Node Responses
 response_max 30
 response_min -30
 
+# Activations
 activation_mutate_rate 0.1
-activation_default sigmoid
+activation_default relu
 activation_options relu sigmoid tanh

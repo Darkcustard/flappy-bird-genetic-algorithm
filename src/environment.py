@@ -45,7 +45,8 @@ class Bird:
     x = 100
     y = 300
     yvel = 0
-    rotfactor = 45
+    rotfactor = 30
+    alive = True
 
     def __init__(self):
         self.image = bird_image.copy()

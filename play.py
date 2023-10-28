@@ -14,11 +14,7 @@ def main():
     pipes.append(environment.Pipe(2700,pipes))
 
 
-    birds = []
-    for x in range(1):
-        bird = environment.Bird()
-        bird.y = random.randint(0,600)
-        birds.append(bird)
+    bird = environment.Bird()
 
     running = True
  
@@ -33,9 +29,15 @@ def main():
             pipe.draw(window)
             pipe.update(dt)
 
-            for bird in birds:
-                if bird.check_collision_pipe(pipe):
-                    birds.remove(bird)
+
+            if bird.check_collision_pipe(pipe):
+                pipes = []
+                pipes.append(environment.Pipe(1500,pipes))
+                pipes.append(environment.Pipe(1900,pipes))
+                pipes.append(environment.Pipe(2300,pipes))
+                pipes.append(environment.Pipe(2700,pipes))
+                bird = environment.Bird()
+
 
         for pipe in pipes:
             if pipe.x < -100:
@@ -48,10 +50,10 @@ def main():
 
         keyboard = pygame.key.get_pressed()
         if keyboard[pygame.K_SPACE]:
-            for bird in birds:
+            if bird.alive:
                 bird.jump()
         
-        for bird in birds:
+        if bird.alive:
             bird.update(dt)
             bird.draw(window)
 
