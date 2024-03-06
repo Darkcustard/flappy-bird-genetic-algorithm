@@ -92,5 +92,5 @@ def evaluator( networks ):
 
 
 
-population = evolutionary.Population([4,9,9,1],'config.txt')
+population = evolutionary.Population([4,1],'config.txt')
 population.fit( evaluator, 1000 )
