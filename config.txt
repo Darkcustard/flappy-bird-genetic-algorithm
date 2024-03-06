@@ -1,28 +1,29 @@
 # Population Statistics
-
-fitness_criterion 100
-population_size 1000
-survival_threshhold 0.5
+fitness_criterion 1200
+population_size 500
+survival_threshhold 0.2
+elitist_reproduction_coefficient 0.2
 
 # Weights
-weight_mutate_rate 0.3
-weight_mutate_power 0.5
+weight_mutate_rate 0.6
+weight_mutate_power 1.0
 weight_replace_rate 0.1
 weight_max 30
 weight_min -30
 
 # Biases
-bias_mutate_rate 0.3
-bias_mutate_power 0.5
+bias_mutate_rate 0.6
+bias_mutate_power 1.0
 bias_replace_rate 0.1
 bias_max 30
 bias_min -30
 
 # Node Responses
-response_max 30
-response_min -30
+response_max 100
+response_min -100
 
 # Activations
-activation_mutate_rate 0.1
+activation_mutate_rate 0.2
 activation_default relu
-activation_options relu sigmoid tanh
+activation_options relu sigmoid tanh leaky_relu
+

@@ -19,9 +19,6 @@ class Layer:
 
 
 
-
-
-
 class FeedForwardNetwork:
 
     fitness = 0
@@ -62,10 +59,20 @@ class FeedForwardNetwork:
 
         values = inputs
 
+        def clamp(x, minimum=self.config['response_min'], maximum=self.config['response_max']):
+            if x < minimum:
+                return minimum
+            if x > maximum:
+                return maximum
+            return x
+
         for i, layer in enumerate(self.layers):
 
+            # Calculate aggrigations
             aggregations = np.dot(values, self.weights[i])
             
+            # Clamp responses
+            aggregations = np.array(list(map(clamp, aggregations)))
 
             # add Biases
             biased = aggregations + layer.biases
